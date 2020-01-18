@@ -14,19 +14,6 @@ app.set('view engine', 'handlebars');
 mongoose.connect('mongodb://localhost/cryptoNewsScraper', {useNewUrlParser: true, useUnifiedTopology: true });
 
 
-// axios.get('https://www.coindesk.com/').then(function(response){
-//     const $ = cheerio.load(response.data)
-
-//     //scrapes a title with a description and a link to the news article
-//     $('.text-content').each(function(i,element){
-//         let result = {}
-//         result.title = $(this).find('.heading').text()
-//         result.description = $(this).find('.card-text').text()
-//         result.url = 'https://www.coindesk.com' + $(this).children('a').next().attr('href')
-//         db.Article.insert({result})
-//     })
-// })
-
 app.get('/', function(req,res){
   db.Article.find({}).then(function(results){
     console.log({articles:results})
@@ -36,15 +23,30 @@ app.get('/', function(req,res){
 })
 
 app.get("/scrape",function(req,res){
-  db.Article.create(
-    {title:'name',
-    description:'aosdifnoadifadoif',
-    url:'aoiwnefoawfnoaewufnew'})
+  axios.get('https://www.coindesk.com/').then(function(response){
+    const $ = cheerio.load(response.data)
 
-  .then(function(result){
-    console.log('created\n' + result)
-    res.redirect("/")
+    //scrapes a title with a description and a link to the news article
+    // let resultsArray = []
+    $('.text-content').each(function(i,element){
+        let result = {}
+        result.title = $(this).find('.heading').text()
+        result.description = $(this).find('.card-text').text()
+        result.url = 'https://www.coindesk.com' + $(this).children('a').next().attr('href')
+        // resultsArray.push(result)
+        db.Article.create(result)
+      })
   })
+  
+  // db.Article.create(
+  //   {title:'name',
+  //   description:'aosdifnoadifadoif',
+  //   url:'aoiwnefoawfnoaewufnew'})
+
+  // .then(function(result){
+  //   console.log('created\n' + result)
+  //   res.redirect("/")
+  // })
 })
 
 
