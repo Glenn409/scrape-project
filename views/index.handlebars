@@ -1,13 +1,23 @@
     
-    
-    <h1>Crypto Scraper</h1>
+    <h1>Crypto News Scraper</h1>
     <div class='artcles-container'>
 
         {{#each articles}}
-        <div class='article'>
-            <h1>{{title}}</h1>
-            <p>{{description}}</p>
-            <p>{{url}}</p>
-        </div>
+            <div class='article'>
+                <h1>{{title}}</h1>
+                <p>{{description}}</p>
+                <p>{{url}}</p>
+                <p>Comments</p>
+
+                {{#each articles.comments}}
+                    <p>{{this.comments}}</p>
+                {{/each}}
+                
+                <form action='/api/comment' method='POST' >
+                    Comment: <textarea name='comment'></textarea>
+                    <button type='submit'>Post Comment</button>
+                </form>
+                
+            </div>
         {{/each}}
     </div>

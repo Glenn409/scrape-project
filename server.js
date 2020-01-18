@@ -8,6 +8,9 @@ const exphbs  = require('express-handlebars');
 const PORT = 3000
 const db = require("./models");
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
@@ -19,7 +22,10 @@ app.get('/', function(req,res){
     console.log({articles:results})
     res.render('index',{articles: results})
   })
+})
 
+app.post('/api/comment',function(req,res){
+  console.log('textbox: ' + req.body.comment)
 })
 
 app.get("/scrape",function(req,res){
@@ -27,7 +33,6 @@ app.get("/scrape",function(req,res){
     const $ = cheerio.load(response.data)
 
     //scrapes a title with a description and a link to the news article
-    // let resultsArray = []
     $('.text-content').each(function(i,element){
         let result = {}
         result.title = $(this).find('.heading').text()
@@ -37,16 +42,6 @@ app.get("/scrape",function(req,res){
         db.Article.create(result)
       })
   })
-  
-  // db.Article.create(
-  //   {title:'name',
-  //   description:'aosdifnoadifadoif',
-  //   url:'aoiwnefoawfnoaewufnew'})
-
-  // .then(function(result){
-  //   console.log('created\n' + result)
-  //   res.redirect("/")
-  // })
 })
 
 
