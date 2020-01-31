@@ -19,13 +19,19 @@ mongoose.connect('mongodb://localhost/cryptoNewsScraper', {useNewUrlParser: true
 
 app.get('/', function(req,res){
   db.Article.find({}).then(function(results){
-    console.log({articles:results})
+    // console.log({articles:results})
     res.render('index',{articles: results})
   })
 })
 
-app.post('/api/comment',function(req,res){
-  console.log('textbox: ' + req.body.comment)
+app.post('/api/addComment',function(req,res){
+  console.log(req.body.id + ' posted: ' + req.body.comment)
+  if(req.body.comment === ''){
+    res.redirect('/')
+  } else {
+    db.Article.findByIdAndUpdate(req.body.id, {$push: {comments: req.body.comment}}, {upsert: true}, function(err,data){})
+    res.redirect('/')
+  }
 })
 
 app.get("/scrape",function(req,res){
@@ -38,14 +44,13 @@ app.get("/scrape",function(req,res){
         result.title = $(this).find('.heading').text()
         result.description = $(this).find('.card-text').text()
         result.url = 'https://www.coindesk.com' + $(this).children('a').next().attr('href')
-        // resultsArray.push(result)
         db.Article.create(result)
       })
   })
 })
 
 
-app.use(express.static("public"));
+app.use(express.static("public"));  
 
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");

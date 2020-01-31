@@ -1,0 +1,110 @@
+body {
+    background-color:#161F36;
+    color:white;
+}
+
+#header{
+    margin-top:0;
+    background-color: #19284D;
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;
+    color:#FCC117;
+    text-align: center;
+    font-size:2.5em;
+    border-bottom:4px solid black;
+    padding:50px 0px 50px 0px;
+}
+.artcles-container{
+    margin-top:20px;
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+    padding-left:15px;
+}
+
+.title{
+    padding-top:15px;
+    color: #fcc117;
+    text-align:center
+}
+.description{
+    font-size: 1.3em;
+    padding-left:20px;
+    width:90%;
+}
+.url{
+    text-align:center;
+    font-size:1.5em;
+    padding-bottom:20px;
+    width:100%;
+    border-bottom:1px solid #fcc117;
+}
+.article {
+    background-color: #19284D;
+}
+.form-box {
+    margin-top:15px;
+    width:100%;
+    border-top:1px solid #fcc117;
+}
+form {
+    font-size:1.5em;
+    display:flex;
+    flex-direction: column;
+    width:500px;
+    margin-left:auto;
+    margin-right:auto;
+    justify-content: center;
+    padding-bottom:20px;
+}
+form button{
+    margin-top:20px;
+    width:200px;
+    height:50px;
+    margin-left:auto;
+    margin-right:auto;
+}
+textarea{
+    margin-left:auto;
+    margin-right:auto;
+    width:400px;
+    height:50px;
+}
+form button:hover{
+    cursor:pointer;
+}
+form p {
+    margin-top:none;
+    text-align: center;
+}
+.comments{
+    text-align:center;
+}
+.comment-box{
+    border:1px solid transparent;
+    align-items: center;
+    display:flex;
+    flex-direction:row;
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:1.2em;
+    justify-content: space-between;
+    height:50px;
+}
+.comment-box:hover{
+    border-bottom:1px solid #fcc117;
+}
+.delete-button{
+    font-size:1.2em;
+    cursor:pointer;
+    background-color:transparent;
+    color:white;
+    width:75px;
+    height:35p
+}
+.delete-button:hover{
+    background-color:white;
+    color:black;
+}
