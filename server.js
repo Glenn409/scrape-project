@@ -5,7 +5,7 @@ const cheerio = require('cheerio')
 const app = express()
 const exphbs  = require('express-handlebars');
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 const db = require("./models");
 
 app.use(express.urlencoded({ extended: true }));
