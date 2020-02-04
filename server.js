@@ -34,6 +34,12 @@ app.post('/api/addComment',function(req,res){
   }
 })
 
+app.post('/api/deleteComment',function(req,res){
+  console.log('test')
+  console.log(req.body);
+  res.redirect('/')
+})
+
 app.get("/scrape",function(req,res){
   axios.get('https://www.coindesk.com/').then(function(response){
     const $ = cheerio.load(response.data)

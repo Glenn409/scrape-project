@@ -96,6 +96,9 @@ form p {
 .comment-box:hover{
     border-bottom:1px solid #fcc117;
 }
+.deletebuttonform{
+    /* display:none; */
+}
 .delete-button{
     font-size:1.2em;
     cursor:pointer;
@@ -107,4 +110,7 @@ form p {
 .delete-button:hover{
     background-color:white;
     color:black;
+}
+button a {
+    text-decoration: none;
 }
