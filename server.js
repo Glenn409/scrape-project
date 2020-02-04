@@ -13,8 +13,8 @@ app.use(express.json());
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
-
-mongoose.connect('mongodb://localhost/cryptoNewsScraper', {useNewUrlParser: true, useUnifiedTopology: true });
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/cryptoNewsScraper'
+mongoose.connect(MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true });
 
 
 app.get('/', function(req,res){
